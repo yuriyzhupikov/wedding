@@ -621,13 +621,21 @@
     <script src="/assets/wedding/js/simplyCountdown.js"></script>
     <script src="/assets/wedding/js/main.js"></script>
     <script>
-      const weddingDate = new Date('2025-08-20T16:00:00');
+      const weddingDate = new Date('2026-07-25T16:00:00');
       simplyCountdown('.simply-countdown-one', {
         year: weddingDate.getFullYear(),
         month: weddingDate.getMonth() + 1,
         day: weddingDate.getDate(),
         hours: weddingDate.getHours(),
         enableUtc: false,
+        plural: false,
+        words: {
+          days: 'дней',
+          hours: 'часов',
+          minutes: 'минут',
+          seconds: 'секунд',
+          pluralLetter: '',
+        },
       });
     </script>
     <script src="/scripts/main.js" type="module"></script>
