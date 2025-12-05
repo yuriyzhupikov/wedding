@@ -4,6 +4,7 @@ import {
   RsvpRepository,
   RSVP_REPOSITORY,
 } from '../../domain/repositories/rsvp.repository';
+import { TelegramNotifierService } from '../../infrastructure/notifications/telegram-notifier.service';
 
 export interface ConfirmAttendanceInput {
   fullName: string;
@@ -18,6 +19,7 @@ export class RsvpService {
   constructor(
     @Inject(RSVP_REPOSITORY)
     private readonly repository: RsvpRepository,
+    private readonly notifier: TelegramNotifierService,
   ) {}
 
   async confirm(input: ConfirmAttendanceInput): Promise<RsvpEntry> {
@@ -30,7 +32,9 @@ export class RsvpService {
       createdAt: new Date(),
     });
 
-    return this.repository.create(entry);
+    const saved = await this.repository.create(entry);
+    await this.notifier.sendRsvp(saved);
+    return saved;
   }
 
   async list(): Promise<RsvpEntry[]> {

@@ -13,10 +13,8 @@ services:
     restart: unless-stopped
     depends_on:
       - mongodb
-    environment:
-      MONGODB_URI: mongodb://mongodb:27017
-      MONGODB_DB: wedding_site
-      PORT: 3000
+    env_file:
+      - .env
     ports:
       - '3000:3000'
 
