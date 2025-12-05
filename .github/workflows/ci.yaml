@@ -28,18 +28,12 @@ jobs:
         run: npm run build
 
   docker:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, wedding-prod]
     needs: quality
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build container image
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: false
-          tags: wedding-site:ci
+      - name: Pull and restart via Docker Compose
+        run: |
+          npm run docker:up
