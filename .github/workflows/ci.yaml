@@ -34,6 +34,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Check Node on runner
+        run: |
+          node -v
+          npm -v
+          echo "NODE_VERSION=$(node -v)" >> $GITHUB_ENV
+
       - name: Pull and restart via Docker Compose
         run: |
+          echo "Using $NODE_VERSION"
           npm run docker:up
