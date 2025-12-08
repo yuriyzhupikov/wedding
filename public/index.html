@@ -520,20 +520,6 @@
                 <div class="row">
                   <div class="col-md-6 col-sm-6">
                     <div class="form-group">
-                      <label for="guestsCount">Количество гостей</label>
-                      <input
-                        type="number"
-                        class="form-control"
-                        id="guestsCount"
-                        name="guestsCount"
-                        min="1"
-                        max="10"
-                        placeholder="1"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-sm-6">
-                    <div class="form-group">
                       <label>Вы приедете?</label>
                       <div class="radio">
                         <label>
@@ -542,6 +528,15 @@
                       </div>
                       <div class="radio">
                         <label><input type="radio" name="attending" value="false" /> Не смогу</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6">
+                    <div class="form-group">
+                      <div class="d-flex align-items-center gap-2" id="guests-wrapper">
+                        <label for="plusOne" class="mb-0">Дополнительный гость</label>
+                        <input type="checkbox" id="plusOne" name="plusOne" class="form-check-input" />
+                        <span class="small text-muted">(по умолчанию только вы)</span>
                       </div>
                     </div>
                   </div>
