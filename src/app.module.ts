@@ -9,7 +9,7 @@ import { RsvpModule } from './modules/rsvp.module';
     ConfigModule.forRoot({ isGlobal: true }),
     ServeStaticModule.forRoot({
       rootPath: join(process.cwd(), 'public'),
-      exclude: ['/api', '/api/*'],
+      exclude: ['/api', '/api/{*path}'],
     }),
     RsvpModule,
   ],

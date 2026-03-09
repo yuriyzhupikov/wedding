@@ -11,6 +11,27 @@
   border-bottom: 2px solid #f14e95;
 }
 
+#fh5co-logo .logo-text {
+  color: #fff;
+  display: inline-block;
+  padding: 5px 10px;
+  cursor: default;
+  user-select: none;
+}
+
+
+#fh5co-logo {
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+
+#fh5co-logo.is-scrolled-out {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+
 .btn-rsvp {
   background: #f14e95;
   border-color: #f14e95;

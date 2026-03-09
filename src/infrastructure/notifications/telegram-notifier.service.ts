@@ -10,7 +10,9 @@ export class TelegramNotifierService {
   private readonly apiUrl = this.botToken
     ? `https://api.telegram.org/bot${this.botToken}/sendMessage`
     : null;
-  private readonly agent = new Agent({ connect: { family: 4, timeout: 10_000 } });
+  private readonly agent = new Agent({
+    connect: { family: 4, timeout: 10_000 },
+  });
 
   async sendRsvp(entry: RsvpEntry): Promise<void> {
     if (!this.apiUrl || !this.chatId) {
@@ -25,6 +27,30 @@ export class TelegramNotifierService {
 
     if (entry.guestsCount) {
       lines.push(`Гостей: ${entry.guestsCount}`);
+    }
+
+    if (entry.plusOne !== null) {
+      lines.push(`С парой: ${entry.plusOne ? 'Да' : 'Нет'}`);
+    }
+
+    if (entry.partnerName) {
+      lines.push(`Фамилия партнера: ${entry.partnerName}`);
+    }
+
+    if (entry.withChildren !== null) {
+      lines.push(`С детьми: ${entry.withChildren ? 'Да' : 'Нет'}`);
+    }
+
+    if (entry.childrenDetails) {
+      lines.push(`Дети: ${entry.childrenDetails}`);
+    }
+
+    if (entry.drinks?.length) {
+      lines.push(`Напитки: ${entry.drinks.join(', ')}`);
+    }
+
+    if (entry.allergyDetails) {
+      lines.push(`Аллергия: ${entry.allergyDetails}`);
     }
 
     if (entry.phone) {

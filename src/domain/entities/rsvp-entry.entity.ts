@@ -4,6 +4,12 @@ export interface RsvpEntryProps {
   phone?: string | null;
   attending: boolean;
   guestsCount?: number | null;
+  plusOne?: boolean | null;
+  partnerName?: string | null;
+  withChildren?: boolean | null;
+  childrenDetails?: string | null;
+  drinks?: string[] | null;
+  allergyDetails?: string | null;
   message?: string | null;
   createdAt: Date;
 }
@@ -19,12 +25,16 @@ export class RsvpEntry {
   ): RsvpEntry {
     return new RsvpEntry({
       ...props,
+      drinks: props.drinks ? [...props.drinks] : props.drinks,
       createdAt: props.createdAt ?? new Date(),
     });
   }
 
   static rehydrate(props: RsvpEntryProps): RsvpEntry {
-    return new RsvpEntry(props);
+    return new RsvpEntry({
+      ...props,
+      drinks: props.drinks ? [...props.drinks] : props.drinks,
+    });
   }
 
   withId(id: string): RsvpEntry {
@@ -51,6 +61,30 @@ export class RsvpEntry {
     return this.props.guestsCount ?? null;
   }
 
+  get plusOne(): boolean | null {
+    return this.props.plusOne ?? null;
+  }
+
+  get partnerName(): string | null {
+    return this.props.partnerName ?? null;
+  }
+
+  get withChildren(): boolean | null {
+    return this.props.withChildren ?? null;
+  }
+
+  get childrenDetails(): string | null {
+    return this.props.childrenDetails ?? null;
+  }
+
+  get drinks(): string[] | null {
+    return this.props.drinks ? [...this.props.drinks] : null;
+  }
+
+  get allergyDetails(): string | null {
+    return this.props.allergyDetails ?? null;
+  }
+
   get message(): string | null {
     return this.props.message ?? null;
   }
@@ -60,6 +94,9 @@ export class RsvpEntry {
   }
 
   toObject(): RsvpEntryProps {
-    return { ...this.props };
+    return {
+      ...this.props,
+      drinks: this.props.drinks ? [...this.props.drinks] : this.props.drinks,
+    };
   }
 }

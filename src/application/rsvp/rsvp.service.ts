@@ -11,6 +11,12 @@ export interface ConfirmAttendanceInput {
   phone?: string;
   attending: boolean;
   guestsCount?: number;
+  plusOne?: boolean;
+  partnerName?: string;
+  withChildren?: boolean;
+  childrenDetails?: string;
+  drinks?: string[];
+  allergyDetails?: string;
   message?: string;
 }
 
@@ -28,6 +34,12 @@ export class RsvpService {
       phone: input.phone ?? null,
       attending: input.attending,
       guestsCount: input.guestsCount ?? null,
+      plusOne: input.plusOne ?? null,
+      partnerName: input.partnerName ?? null,
+      withChildren: input.withChildren ?? null,
+      childrenDetails: input.childrenDetails ?? null,
+      drinks: input.drinks?.length ? input.drinks : null,
+      allergyDetails: input.allergyDetails ?? null,
       message: input.message ?? null,
       createdAt: new Date(),
     });

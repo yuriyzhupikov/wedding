@@ -14,6 +14,12 @@ export class RsvpController {
       attending: dto.attending,
       phone: dto.phone,
       guestsCount: dto.guestsCount,
+      plusOne: dto.plusOne,
+      partnerName: dto.partnerName,
+      withChildren: dto.withChildren,
+      childrenDetails: dto.childrenDetails,
+      drinks: dto.drinks,
+      allergyDetails: dto.allergyDetails,
       message: dto.message,
     });
 
@@ -33,6 +39,12 @@ export class RsvpController {
       attending: entry.attending,
       phone: entry.phone,
       guestsCount: entry.guestsCount,
+      plusOne: entry.plusOne,
+      partnerName: entry.partnerName,
+      withChildren: entry.withChildren,
+      childrenDetails: entry.childrenDetails,
+      drinks: entry.drinks,
+      allergyDetails: entry.allergyDetails,
       message: entry.message,
       createdAt: entry.createdAt,
     };

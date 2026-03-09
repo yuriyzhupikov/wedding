@@ -19,35 +19,15 @@ const normalizeDrinks = (drinks) => {
   return drinks;
 };
 
-const appendLine = (message, line) => (message ? `${message}\n${line}` : line);
-
-const appendDrinksToMessage = (message, drinks) => {
-  if (!drinks.length) return message;
-  return appendLine(message, `Предпочтения по напиткам: ${drinks.join(', ')}`);
-};
-
-const appendPartnerToMessage = (message, plusOne, partnerName) => {
-  if (!plusOne || !partnerName) return message;
-  return appendLine(message, `Партнер: ${partnerName}`);
-};
-
-const appendChildrenToMessage = (message, withChildren, childrenDetails) => {
-  if (!withChildren || !childrenDetails) return message;
-  return appendLine(message, `Дети: ${childrenDetails}`);
-};
-
-const appendAllergyToMessage = (message, allergyDetails) => {
-  if (!allergyDetails) return message;
-  return appendLine(message, `Аллергия: ${allergyDetails}`);
-};
-
 const buildSubmissionData = () => {
   const data = new FormData(form);
   const attending = data.get('attending') === 'true';
   const plusOne = attending && data.get('plusOne') === 'on';
   const partnerName = plusOne ? data.get('partnerName')?.trim() || undefined : undefined;
   const withChildren = attending && data.get('withChildren') === 'true';
-  const childrenDetails = withChildren ? data.get('childrenDetails')?.trim() || undefined : undefined;
+  const childrenDetails = withChildren
+    ? data.get('childrenDetails')?.trim() || undefined
+    : undefined;
   const selectedDrinks = attending
     ? normalizeDrinks(data.getAll('drinks').map((item) => String(item)))
     : [];
@@ -55,19 +35,19 @@ const buildSubmissionData = () => {
     ? data.get('allergyDetails')?.trim() || undefined
     : undefined;
 
-  let message = data.get('message')?.trim() || undefined;
-  message = appendPartnerToMessage(message, plusOne, partnerName);
-  message = appendChildrenToMessage(message, withChildren, childrenDetails);
-  message = appendDrinksToMessage(message, selectedDrinks);
-  message = appendAllergyToMessage(message, allergyDetails);
-
   return {
     payload: {
       fullName: data.get('fullName')?.trim(),
       phone: data.get('phone')?.trim() || undefined,
-      guestsCount: attending ? (plusOne ? 2 : 1) : undefined,
       attending,
-      message,
+      guestsCount: attending ? (plusOne ? 2 : 1) : undefined,
+      plusOne: attending ? plusOne : undefined,
+      partnerName,
+      withChildren: attending ? withChildren : undefined,
+      childrenDetails,
+      drinks: selectedDrinks.length ? selectedDrinks : undefined,
+      allergyDetails,
+      message: data.get('message')?.trim() || undefined,
     },
     meta: {
       plusOne,

@@ -10,6 +10,12 @@ interface RsvpDocument {
   phone?: string | null;
   attending: boolean;
   guestsCount?: number | null;
+  plusOne?: boolean | null;
+  partnerName?: string | null;
+  withChildren?: boolean | null;
+  childrenDetails?: string | null;
+  drinks?: string[] | null;
+  allergyDetails?: string | null;
   message?: string | null;
   createdAt: Date;
 }
@@ -29,19 +35,23 @@ export class MongoRsvpRepository implements RsvpRepository {
       phone: entry.phone,
       attending: entry.attending,
       guestsCount: entry.guestsCount,
+      plusOne: entry.plusOne,
+      partnerName: entry.partnerName,
+      withChildren: entry.withChildren,
+      childrenDetails: entry.childrenDetails,
+      drinks: entry.drinks,
+      allergyDetails: entry.allergyDetails,
       message: entry.message,
       createdAt: entry.createdAt,
     };
+
     const result = await collection.insertOne(document);
     return entry.withId(result.insertedId.toHexString());
   }
 
   async findAll(): Promise<RsvpEntry[]> {
     const collection = await this.getCollection();
-    const documents = await collection
-      .find()
-      .sort({ createdAt: -1 })
-      .toArray();
+    const documents = await collection.find().sort({ createdAt: -1 }).toArray();
 
     return documents.map((doc) =>
       RsvpEntry.rehydrate({
@@ -50,6 +60,12 @@ export class MongoRsvpRepository implements RsvpRepository {
         phone: doc.phone ?? null,
         attending: doc.attending,
         guestsCount: doc.guestsCount ?? null,
+        plusOne: doc.plusOne ?? null,
+        partnerName: doc.partnerName ?? null,
+        withChildren: doc.withChildren ?? null,
+        childrenDetails: doc.childrenDetails ?? null,
+        drinks: doc.drinks ?? null,
+        allergyDetails: doc.allergyDetails ?? null,
         message: doc.message ?? null,
         createdAt: doc.createdAt,
       }),
