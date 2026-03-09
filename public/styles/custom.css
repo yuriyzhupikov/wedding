@@ -208,6 +208,10 @@
   border: 0;
 }
 
+#fh5co-location .location-map-image {
+  object-fit: cover;
+}
+
 /* Spacing fixes: location + footer */
 #fh5co-location {
   padding: 5.5em 0 4em;
