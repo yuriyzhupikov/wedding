@@ -85,7 +85,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 .fh5co-nav {
-  position: absolute;
+  position: fixed;
   top: 0;
   margin: 0;
   padding: 0;
@@ -940,9 +940,9 @@ form label {
 .simply-countdown > .simply-section {
   /* coutndown blocks */
   display: inline-block;
-  width: 100px;
-  height: 100px;
-  background: rgba(241, 78, 149, 0.8);
+  width: 80px;
+  height: 80px;
+  /* background: rgba(241, 78, 149, 0.8); */
   margin: 0 4px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -998,6 +998,7 @@ form label {
 #fh5co-couple-story,
 #fh5co-couple,
 #fh5co-gallery,
+#fh5co-location,
 .fh5co-section {
   padding: 7em 0;
   clear: both;
@@ -1011,6 +1012,7 @@ form label {
   #fh5co-couple-story,
   #fh5co-couple,
   #fh5co-gallery,
+  #fh5co-location,
   .fh5co-section {
     padding: 3em 0;
   }
@@ -1018,6 +1020,10 @@ form label {
 
 .fh5co-section-gray {
   background: rgba(0, 0, 0, 0.04);
+}
+
+.fh5co-section-gray2 {
+  background: rgba(114, 114, 114, 0.04);
 }
 
 .couple-wrap {
