@@ -4,7 +4,7 @@ import {
   RsvpRepository,
   RSVP_REPOSITORY,
 } from '../../domain/repositories/rsvp.repository';
-import { TelegramNotifierService } from '../../infrastructure/notifications/telegram-notifier.service';
+import { EmailNotifierService } from '../../infrastructure/notifications/email-notifier.service';
 
 export interface ConfirmAttendanceInput {
   fullName: string;
@@ -25,7 +25,7 @@ export class RsvpService {
   constructor(
     @Inject(RSVP_REPOSITORY)
     private readonly repository: RsvpRepository,
-    private readonly notifier: TelegramNotifierService,
+    private readonly notifier: EmailNotifierService,
   ) {}
 
   async confirm(input: ConfirmAttendanceInput): Promise<RsvpEntry> {

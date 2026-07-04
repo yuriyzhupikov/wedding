@@ -18,4 +18,4 @@ async function bootstrap() {
 
   console.log(`Wedding RSVP server listening on http://localhost:${port}`);
 }
-bootstrap();
+void bootstrap();
