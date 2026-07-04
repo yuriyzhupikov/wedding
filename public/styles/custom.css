@@ -108,6 +108,24 @@ a:focus,
   color: var(--color-accent);
 }
 
+.feature-left .icon {
+  align-items: center;
+  color: var(--color-accent);
+  display: flex;
+  justify-content: center;
+}
+
+.feature-left .icon .feature-icon-svg {
+  display: block;
+  fill: none;
+  height: 30px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+  width: 30px;
+}
+
 ::-webkit-selection {
   color: #fff;
   background: var(--color-accent);
@@ -199,6 +217,12 @@ a:focus,
 #fh5co-started .rsvp-form {
   font-family: var(--font-form);
   margin-top: 10px;
+}
+
+#fh5co-started {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #fh5co-started .rsvp-form label,
