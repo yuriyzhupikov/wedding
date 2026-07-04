@@ -579,3 +579,100 @@ a:focus,
   font-size: 24px !important;
   font-weight: 500 !important;
 }
+
+/* Mobile layout fixes */
+#fh5co-offcanvas,
+.fh5co-nav-toggle {
+  display: none !important;
+}
+
+body.offcanvas {
+  overflow: auto !important;
+}
+
+body.offcanvas #page {
+  overflow-x: hidden !important;
+  position: relative !important;
+}
+
+body.offcanvas #page:after {
+  display: none !important;
+}
+
+@media screen and (max-width: 767px) {
+  #fh5co-header .display-tc h1,
+  #fh5co-counter .display-tc h1,
+  .fh5co-cover .display-tc h1 {
+    font-size: 78px !important;
+    line-height: 0.95 !important;
+    margin-bottom: 12px !important;
+  }
+
+  #fh5co-header .display-tc h2 {
+    font-size: 30px !important;
+    line-height: 1.25 !important;
+    margin: 10px auto 34px !important;
+    max-width: 340px;
+  }
+
+  .fh5co-heading {
+    margin-bottom: 2.8em;
+  }
+
+  .fh5co-heading h2,
+  #fh5co-started .fh5co-heading h2 {
+    font-size: 56px !important;
+    line-height: 1.05 !important;
+  }
+
+  #fh5co-couple-story .timeline {
+    padding: 14px 0 10px;
+  }
+
+  #fh5co-couple-story .timeline:before {
+    left: 44px !important;
+    margin-left: 0 !important;
+  }
+
+  #fh5co-couple-story .timeline > li {
+    margin-bottom: 28px;
+  }
+
+  #fh5co-couple-story .timeline > li > .timeline-badge {
+    font-size: 20px !important;
+    height: 72px !important;
+    left: 8px !important;
+    letter-spacing: 0 !important;
+    line-height: 1 !important;
+    margin-left: 0 !important;
+    top: 18px !important;
+    white-space: nowrap;
+    width: 72px !important;
+    z-index: 2;
+  }
+
+  #fh5co-couple-story .timeline > li > .timeline-panel {
+    float: none !important;
+    margin-left: 120px;
+    padding: 24px 20px;
+    width: auto !important;
+  }
+
+  #fh5co-couple-story .timeline > li > .timeline-panel:before,
+  #fh5co-couple-story .timeline > li.timeline-inverted > .timeline-panel:before {
+    border-left-width: 0;
+    border-right-width: 15px;
+    left: -15px;
+    right: auto;
+    top: 36px;
+  }
+
+  #fh5co-couple-story .timeline > li > .timeline-panel:after,
+  #fh5co-couple-story .timeline > li.timeline-inverted > .timeline-panel:after {
+    border-left-width: 0;
+    border-right-width: 14px;
+    left: -14px;
+    right: auto;
+    top: 37px;
+  }
+}
