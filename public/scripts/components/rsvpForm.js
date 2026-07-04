@@ -3,6 +3,8 @@ import { setStatus } from './formStatus.js';
 
 const form = document.querySelector('#rsvp-form');
 const NO_ALCOHOL_VALUE = 'Не буду пить алкоголь';
+const MAX_ALCOHOL_DRINKS = 2;
+const DRINKS_LIMIT_MESSAGE = 'Можно выбрать не больше 2 алкогольных напитков.';
 
 const isPhoneValid = (value) => {
   if (!value) return true;
@@ -18,6 +20,11 @@ const normalizeDrinks = (drinks) => {
   }
   return drinks;
 };
+
+const getSelectedAlcoholDrinks = (inputs) =>
+  [...inputs].filter(
+    (input) => input.checked && input.value !== NO_ALCOHOL_VALUE,
+  );
 
 const buildSubmissionData = () => {
   const data = new FormData(form);
@@ -79,6 +86,7 @@ export function initRsvpForm() {
   const allergyWrapper = form.querySelector('#allergy-wrapper');
   const allergyInput = form.querySelector('#allergyDetails');
   const drinksWrapper = form.querySelector('#drinks-wrapper');
+  const drinksLimitStatus = form.querySelector('#drinks-limit-status');
 
   const plusOneInput = form.querySelector('#plusOne');
   const attendingInputs = form.querySelectorAll('input[name="attending"]');
@@ -87,6 +95,12 @@ export function initRsvpForm() {
   const noAlcoholInput = form.querySelector(
     `input[name="drinks"][value="${NO_ALCOHOL_VALUE}"]`,
   );
+
+  const setDrinksLimitStatus = (message = '') => {
+    if (!drinksLimitStatus) return;
+    drinksLimitStatus.textContent = message;
+    drinksLimitStatus.classList.toggle('error', Boolean(message));
+  };
 
   const isAttending = () =>
     form.querySelector('input[name="attending"]:checked')?.value === 'true';
@@ -155,6 +169,7 @@ export function initRsvpForm() {
       drinksInputs.forEach((input) => {
         input.checked = false;
       });
+      setDrinksLimitStatus('');
     }
 
     togglePartnerField();
@@ -169,12 +184,21 @@ export function initRsvpForm() {
         drinksInputs.forEach((item) => {
           if (item !== noAlcoholInput) item.checked = false;
         });
+        setDrinksLimitStatus('');
         return;
       }
 
       if (input !== noAlcoholInput && input.checked) {
         noAlcoholInput.checked = false;
       }
+
+      if (getSelectedAlcoholDrinks(drinksInputs).length > MAX_ALCOHOL_DRINKS) {
+        input.checked = false;
+        setDrinksLimitStatus(DRINKS_LIMIT_MESSAGE);
+        return;
+      }
+
+      setDrinksLimitStatus('');
     });
   });
 
@@ -219,6 +243,15 @@ export function initRsvpForm() {
       return;
     }
 
+    if (
+      payload.attending &&
+      getSelectedAlcoholDrinks(drinksInputs).length > MAX_ALCOHOL_DRINKS
+    ) {
+      setDrinksLimitStatus(DRINKS_LIMIT_MESSAGE);
+      setStatus(DRINKS_LIMIT_MESSAGE, 'error');
+      return;
+    }
+
     const submitButton = form.querySelector('button[type="submit"]');
     submitButton.disabled = true;
     setStatus('Отправляем ответ...', 'pending');
@@ -238,6 +271,7 @@ export function initRsvpForm() {
       if (noSecondDayInput) {
         noSecondDayInput.checked = true;
       }
+      setDrinksLimitStatus('');
       toggleAttendanceDependentFields();
       setStatus('Спасибо!', 'success');
     } catch (error) {

@@ -1,4 +1,9 @@
-import { Inject, Injectable } from '@nestjs/common';
+import {
+  Inject,
+  Injectable,
+  Logger,
+  ServiceUnavailableException,
+} from '@nestjs/common';
 import { RsvpEntry } from '../../domain/entities/rsvp-entry.entity';
 import {
   RsvpRepository,
@@ -23,6 +28,8 @@ export interface ConfirmAttendanceInput {
 
 @Injectable()
 export class RsvpService {
+  private readonly logger = new Logger(RsvpService.name);
+
   constructor(
     @Inject(RSVP_REPOSITORY)
     private readonly repository: RsvpRepository,
@@ -46,8 +53,26 @@ export class RsvpService {
       createdAt: new Date(),
     });
 
-    const saved = await this.repository.create(entry);
-    await this.notifier.sendRsvp(saved);
+    let saved: RsvpEntry;
+    try {
+      saved = await this.repository.create(entry);
+    } catch (error) {
+      this.logger.error(
+        `Failed to save RSVP entry: ${error instanceof Error ? error.message : String(error)}`,
+      );
+      throw new ServiceUnavailableException(
+        'Не получилось сохранить ответ. Повторите ещё раз.',
+      );
+    }
+
+    try {
+      await this.notifier.sendRsvp(saved);
+    } catch (error) {
+      this.logger.warn(
+        `Failed to send RSVP notification after save: ${error instanceof Error ? error.message : String(error)}`,
+      );
+    }
+
     return saved;
   }
 

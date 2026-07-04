@@ -53,7 +53,9 @@ export class CreateRsvpDto {
 
   @IsOptional()
   @IsArray()
-  @ArrayMaxSize(6)
+  @ArrayMaxSize(2, {
+    message: 'Можно выбрать не больше 2 алкогольных напитков.',
+  })
   @IsString({ each: true })
   @MaxLength(40, { each: true })
   drinks?: string[];

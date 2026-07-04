@@ -1,34 +1,35 @@
 @font-face {
-  font-family: "Book Antiqua";
-  src: url("/assets/wedding/fonts/ofont.ru_Book%20Antiqua.ttf")
-    format("truetype");
+  font-family: 'Book Antiqua';
+  src: url('/assets/wedding/fonts/ofont.ru_Book%20Antiqua.ttf')
+    format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Bickham Script One";
-  src: url("/assets/wedding/fonts/ofont.ru_Bickham%20Script%20One.ttf")
-    format("truetype");
+  font-family: 'Bickham Script One';
+  src: url('/assets/wedding/fonts/ofont.ru_Bickham%20Script%20One.ttf')
+    format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Montserrat Local";
-  src: url("/assets/wedding/fonts/ofont.ru_Montserrat.ttf") format("truetype");
+  font-family: 'Montserrat Local';
+  src: url('/assets/wedding/fonts/ofont.ru_Montserrat.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 :root {
-  --font-serif: "Book Antiqua", "Palatino Linotype", Palatino, Georgia, serif;
-  --font-script: "Bickham Script One", "Bickham Script Pro",
-    "Bickham Script Pro 3", "Bickham Script", "Sacramento", cursive;
-  --font-form: "Montserrat Local", Montserrat, Arial, sans-serif;
+  --font-serif: 'Book Antiqua', 'Palatino Linotype', Palatino, Georgia, serif;
+  --font-script:
+    'Bickham Script One', 'Bickham Script Pro', 'Bickham Script Pro 3',
+    'Bickham Script', 'Sacramento', cursive;
+  --font-form: 'Montserrat Local', Montserrat, Arial, sans-serif;
   --color-accent: #9b7a45;
   --color-accent-hover: #7f6135;
   --color-accent-soft: #d5c39f;
@@ -67,7 +68,7 @@ h6 {
   max-width: 980px;
   margin: 8px auto 40px;
   font-family: var(--font-script);
-  font-size: 46px;
+  font-size: 62px;
   font-weight: 400;
   line-height: 1.25;
   letter-spacing: 0;
@@ -77,14 +78,14 @@ h6 {
   #fh5co-header .display-tc h2 {
     max-width: 620px;
     margin: 8px auto 30px;
-    font-size: 34px;
+    font-size: 50px;
     line-height: 1.25;
   }
 }
 
 @media screen and (max-width: 480px) {
   #fh5co-header .display-tc h2 {
-    font-size: 30px;
+    font-size: 34px;
   }
 }
 
@@ -188,9 +189,11 @@ a:focus,
   user-select: none;
 }
 
-
 #fh5co-logo {
-  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s ease;
 }
 
 #fh5co-logo.is-scrolled-out {
@@ -199,7 +202,6 @@ a:focus,
   transform: translateY(-10px);
   pointer-events: none;
 }
-
 
 .btn-rsvp {
   background: var(--color-accent);
@@ -305,6 +307,15 @@ a:focus,
   align-items: center;
   gap: 8px;
   margin: 0;
+}
+
+#fh5co-started .rsvp-form .drinks-limit-status {
+  margin-top: 8px;
+  min-height: 18px;
+}
+
+#fh5co-started .rsvp-form .drinks-limit-status.error {
+  color: #ffd1d9;
 }
 
 #fh5co-started .rsvp-form .is-hidden {
@@ -522,7 +533,6 @@ a:focus,
   #fh5co-footer {
     padding: 2em 0 1.5em;
   }
-  
 }
 
 /* RSVP form typography override */
@@ -541,7 +551,7 @@ a:focus,
   letter-spacing: 0.01em;
 }
 
-#fh5co-started .rsvp-form > .row > [class*="col-"] > .form-group > label,
+#fh5co-started .rsvp-form > .row > [class*='col-'] > .form-group > label,
 #fh5co-started .rsvp-form .guest-toggle > label {
   font-size: 17px !important;
   font-weight: 500 !important;
@@ -619,7 +629,7 @@ body.offcanvas #page:after {
   }
 
   #fh5co-header .display-tc h2 {
-    font-size: 34px !important;
+    font-size: 38px !important;
     line-height: 1.25 !important;
     margin: 10px auto 34px !important;
     max-width: 340px;
@@ -669,7 +679,10 @@ body.offcanvas #page:after {
   }
 
   #fh5co-couple-story .timeline > li > .timeline-panel:before,
-  #fh5co-couple-story .timeline > li.timeline-inverted > .timeline-panel:before {
+  #fh5co-couple-story
+    .timeline
+    > li.timeline-inverted
+    > .timeline-panel:before {
     border-left-width: 0;
     border-right-width: 15px;
     left: -15px;
