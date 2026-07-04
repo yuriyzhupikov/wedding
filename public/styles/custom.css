@@ -225,6 +225,10 @@ a:focus,
   background-size: cover;
 }
 
+#fh5co-started .overlay {
+  background: rgba(0, 0, 0, 0.25);
+}
+
 #fh5co-started .rsvp-form label,
 #fh5co-started .rsvp-form .form-label,
 #fh5co-started .rsvp-form .form-control,
@@ -359,14 +363,15 @@ a:focus,
 
 #fh5co-location .location-address-title {
   margin: 0 0 14px;
-  font-size: 22px;
+  font-size: 18px;
+  line-height: 1.3;
   color: #2f2f2f;
 }
 
 #fh5co-location .location-address {
   margin: 0 0 16px;
-  font-size: 24px;
-  line-height: 1.35;
+  font-size: 64px;
+  line-height: 1.05;
   font-weight: 600;
   color: #2f2f2f;
 }
@@ -381,7 +386,34 @@ a:focus,
 #fh5co-location .location-link {
   display: inline-block;
   margin: 0;
+  font-size: 20px;
   font-weight: 600;
+}
+
+#fh5co-services .feature-copy a,
+#fh5co-location .location-address-map-link {
+  color: var(--color-accent);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+#fh5co-services .feature-copy a:hover,
+#fh5co-services .feature-copy a:focus,
+#fh5co-location .location-address-map-link:hover,
+#fh5co-location .location-address-map-link:focus {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+}
+
+#fh5co-started .rsvp-form .contact-hint a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+#fh5co-started .rsvp-form .contact-hint a:hover,
+#fh5co-started .rsvp-form .contact-hint a:focus {
+  color: #fff;
 }
 
 #fh5co-location .location-map-wrap {
@@ -460,11 +492,15 @@ a:focus,
   }
 
   #fh5co-location .location-address-title {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   #fh5co-location .location-address {
-    font-size: 22px;
+    font-size: 48px;
+  }
+
+  #fh5co-location .location-link {
+    font-size: 18px;
   }
 
   #fh5co-location .location-map-wrap,
