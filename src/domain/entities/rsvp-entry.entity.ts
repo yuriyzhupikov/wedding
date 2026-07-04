@@ -5,6 +5,7 @@ export interface RsvpEntryProps {
   attending: boolean;
   guestsCount?: number | null;
   plusOne?: boolean | null;
+  secondDay?: boolean | null;
   partnerName?: string | null;
   withChildren?: boolean | null;
   childrenDetails?: string | null;
@@ -63,6 +64,10 @@ export class RsvpEntry {
 
   get plusOne(): boolean | null {
     return this.props.plusOne ?? null;
+  }
+
+  get secondDay(): boolean | null {
+    return this.props.secondDay ?? null;
   }
 
   get partnerName(): string | null {

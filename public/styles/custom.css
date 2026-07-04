@@ -1,3 +1,154 @@
+@font-face {
+  font-family: "Book Antiqua";
+  src: url("/assets/wedding/fonts/ofont.ru_Book%20Antiqua.ttf")
+    format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bickham Script One";
+  src: url("/assets/wedding/fonts/ofont.ru_Bickham%20Script%20One.ttf")
+    format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat Local";
+  src: url("/assets/wedding/fonts/ofont.ru_Montserrat.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-serif: "Book Antiqua", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-script: "Bickham Script One", "Bickham Script Pro",
+    "Bickham Script Pro 3", "Bickham Script", "Sacramento", cursive;
+  --font-form: "Montserrat Local", Montserrat, Arial, sans-serif;
+  --color-accent: #9b7a45;
+  --color-accent-hover: #7f6135;
+  --color-accent-soft: #d5c39f;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-serif);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-script);
+  font-weight: 400;
+}
+
+.fh5co-nav #fh5co-logo,
+#fh5co-logo a,
+#fh5co-header .display-tc h1,
+#fh5co-counter .display-tc h1,
+.fh5co-cover .display-tc h1,
+.fh5co-heading h2,
+.couple-half h3 {
+  font-family: var(--font-script);
+  font-weight: 400;
+}
+
+#fh5co-header .display-tc h2 {
+  max-width: 980px;
+  margin: 8px auto 40px;
+  font-family: var(--font-script);
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+@media screen and (max-width: 768px) {
+  #fh5co-header .display-tc h2 {
+    max-width: 620px;
+    margin: 8px auto 30px;
+    font-size: 31px;
+    line-height: 1.25;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #fh5co-header .display-tc h2 {
+    font-size: 24px;
+  }
+}
+
+a,
+a:hover,
+a:active,
+a:focus,
+.fh5co-nav ul li.btn-cta a,
+.fh5co-social-icons li a,
+.fh5co-contact-info ul li:before,
+#fh5co-header .display-tc .btn,
+#fh5co-counter .display-tc .btn,
+.fh5co-cover .display-tc .btn,
+.heart i,
+.couple-half h3,
+.feature-center .icon i,
+.fh5co-heading h2,
+#fh5co-testimonial .wrap-testimony .testimony-slide span a.twitter,
+.feature-left .icon i,
+.btn-primary.btn-outline {
+  color: var(--color-accent);
+}
+
+::-webkit-selection {
+  color: #fff;
+  background: var(--color-accent);
+}
+
+::-moz-selection {
+  color: #fff;
+  background: var(--color-accent);
+}
+
+::selection {
+  color: #fff;
+  background: var(--color-accent);
+}
+
+.btn-primary,
+#fh5co-started .btn,
+.btn-primary.btn-outline:hover,
+.btn-primary.btn-outline:focus,
+.btn-primary.btn-outline:active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background: var(--color-accent-hover) !important;
+  border-color: var(--color-accent-hover) !important;
+}
+
+.btn-primary.btn-outline,
+.owl-carousel .owl-controls .owl-dot.active span {
+  border-color: var(--color-accent);
+}
+
+.form-control:active,
+.form-control:focus {
+  border-color: var(--color-accent);
+}
+
 .eyebrow {
   display: inline-block;
   letter-spacing: 0.15em;
@@ -8,7 +159,7 @@
 
 .fh5co-nav ul li a.active {
   color: #fff;
-  border-bottom: 2px solid #f14e95;
+  border-bottom: 2px solid var(--color-accent);
 }
 
 #fh5co-logo .logo-text {
@@ -33,20 +184,31 @@
 
 
 .btn-rsvp {
-  background: #f14e95;
-  border-color: #f14e95;
+  background: var(--color-accent);
+  border-color: var(--color-accent);
   color: #fff;
 }
 
 .btn-rsvp:hover,
 .btn-rsvp:focus {
-  background: #d63f83;
-  border-color: #d63f83;
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
   color: #fff;
 }
 
 #fh5co-started .rsvp-form {
+  font-family: var(--font-form);
   margin-top: 10px;
+}
+
+#fh5co-started .rsvp-form label,
+#fh5co-started .rsvp-form .form-label,
+#fh5co-started .rsvp-form .form-control,
+#fh5co-started .rsvp-form .radio label,
+#fh5co-started .rsvp-form .checkbox label,
+#fh5co-started .rsvp-form .contact-hint,
+#fh5co-started .rsvp-form button {
+  font-family: var(--font-form);
 }
 
 #fh5co-started .rsvp-form label,
@@ -66,9 +228,13 @@
   color: #fff;
 }
 
+#fh5co-started .rsvp-form .form-control::placeholder {
+  font-family: var(--font-form);
+}
+
 #fh5co-started .rsvp-form .form-control:focus {
   background: rgba(255, 255, 255, 0.12);
-  border-color: #f7c6dc;
+  border-color: var(--color-accent-soft);
   box-shadow: none;
 }
 
@@ -289,3 +455,67 @@
   
 }
 
+/* RSVP form typography override */
+#fh5co-started .rsvp-form,
+#fh5co-started .rsvp-form * {
+  font-family: var(--font-form) !important;
+}
+
+#fh5co-started .rsvp-form label,
+#fh5co-started .rsvp-form .form-label,
+#fh5co-started .rsvp-form .radio label,
+#fh5co-started .rsvp-form .checkbox label {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.55 !important;
+  letter-spacing: 0.01em;
+}
+
+#fh5co-started .rsvp-form > .row > [class*="col-"] > .form-group > label,
+#fh5co-started .rsvp-form .guest-toggle > label {
+  font-size: 17px !important;
+  font-weight: 500 !important;
+}
+
+#fh5co-started .rsvp-form .form-control {
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  line-height: 1.45 !important;
+}
+
+#fh5co-started .rsvp-form .form-control::placeholder {
+  font-size: 15px !important;
+  font-weight: 400 !important;
+}
+
+/* Content sections typography override */
+#fh5co-couple-story .timeline,
+#fh5co-couple-story .timeline *,
+#fh5co-services .feature-copy,
+#fh5co-services .feature-copy * {
+  font-family: var(--font-form) !important;
+}
+
+#fh5co-couple-story .timeline-title,
+#fh5co-services .feature-copy h3 {
+  font-size: 17px !important;
+  font-weight: 500 !important;
+  line-height: 1.45 !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+#fh5co-couple-story .timeline-heading .date,
+#fh5co-couple-story .timeline-body p,
+#fh5co-services .feature-copy p {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.75 !important;
+  letter-spacing: 0.01em;
+}
+
+#fh5co-couple-story .timeline > li > .timeline-badge {
+  font-family: var(--font-form) !important;
+  font-size: 24px !important;
+  font-weight: 500 !important;
+}

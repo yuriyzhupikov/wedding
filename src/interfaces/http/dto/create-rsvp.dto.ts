@@ -34,6 +34,10 @@ export class CreateRsvpDto {
   plusOne?: boolean;
 
   @IsOptional()
+  @IsBoolean()
+  secondDay?: boolean;
+
+  @IsOptional()
   @IsString()
   @MaxLength(80)
   partnerName?: string;

@@ -203,6 +203,10 @@ export class EmailNotifierService {
       lines.push(`С парой: ${entry.plusOne ? 'Да' : 'Нет'}`);
     }
 
+    if (entry.secondDay !== null) {
+      lines.push(`Будет на втором дне: ${entry.secondDay ? 'Да' : 'Нет'}`);
+    }
+
     if (entry.partnerName) {
       lines.push(`Фамилия партнера: ${entry.partnerName}`);
     }

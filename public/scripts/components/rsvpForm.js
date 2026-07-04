@@ -23,7 +23,10 @@ const buildSubmissionData = () => {
   const data = new FormData(form);
   const attending = data.get('attending') === 'true';
   const plusOne = attending && data.get('plusOne') === 'on';
-  const partnerName = plusOne ? data.get('partnerName')?.trim() || undefined : undefined;
+  const partnerName = plusOne
+    ? data.get('partnerName')?.trim() || undefined
+    : undefined;
+  const secondDay = attending ? data.get('secondDay') === 'true' : undefined;
   const withChildren = attending && data.get('withChildren') === 'true';
   const childrenDetails = withChildren
     ? data.get('childrenDetails')?.trim() || undefined
@@ -43,6 +46,7 @@ const buildSubmissionData = () => {
       guestsCount: attending ? (plusOne ? 2 : 1) : undefined,
       plusOne: attending ? plusOne : undefined,
       partnerName,
+      secondDay,
       withChildren: attending ? withChildren : undefined,
       childrenDetails,
       drinks: selectedDrinks.length ? selectedDrinks : undefined,
@@ -64,10 +68,13 @@ export function initRsvpForm() {
   }
 
   const guestsWrapper = form.querySelector('#guests-wrapper');
+  const secondDayWrapper = form.querySelector('#second-day-wrapper');
   const partnerWrapper = form.querySelector('#partner-wrapper');
   const partnerInput = form.querySelector('#partnerName');
   const childrenWrapper = form.querySelector('#children-wrapper');
-  const childrenDetailsWrapper = form.querySelector('#children-details-wrapper');
+  const childrenDetailsWrapper = form.querySelector(
+    '#children-details-wrapper',
+  );
   const childrenDetailsInput = form.querySelector('#childrenDetails');
   const allergyWrapper = form.querySelector('#allergy-wrapper');
   const allergyInput = form.querySelector('#allergyDetails');
@@ -98,7 +105,8 @@ export function initRsvpForm() {
 
   const toggleChildrenDetails = () => {
     const withChildren =
-      form.querySelector('input[name="withChildren"]:checked')?.value === 'true';
+      form.querySelector('input[name="withChildren"]:checked')?.value ===
+      'true';
     const visible = isAttending() && withChildren;
 
     if (childrenDetailsWrapper) {
@@ -113,7 +121,13 @@ export function initRsvpForm() {
   const toggleAttendanceDependentFields = () => {
     const attending = isAttending();
 
-    [guestsWrapper, childrenWrapper, drinksWrapper, allergyWrapper].forEach((element) => {
+    [
+      guestsWrapper,
+      secondDayWrapper,
+      childrenWrapper,
+      drinksWrapper,
+      allergyWrapper,
+    ].forEach((element) => {
       if (!element) return;
       element.classList.toggle('is-hidden', !attending);
     });
@@ -123,6 +137,13 @@ export function initRsvpForm() {
       if (partnerInput) partnerInput.value = '';
       if (childrenDetailsInput) childrenDetailsInput.value = '';
       if (allergyInput) allergyInput.value = '';
+
+      const noSecondDayInput = form.querySelector(
+        'input[name="secondDay"][value="false"]',
+      );
+      if (noSecondDayInput) {
+        noSecondDayInput.checked = true;
+      }
 
       const noChildrenInput = form.querySelector(
         'input[name="withChildren"][value="false"]',
@@ -181,7 +202,10 @@ export function initRsvpForm() {
     }
 
     if (payload.phone && !isPhoneValid(payload.phone)) {
-      setStatus('Проверьте номер телефона: от 7 до 15 цифр, можно с + и пробелами.', 'error');
+      setStatus(
+        'Проверьте номер телефона: от 7 до 15 цифр, можно с + и пробелами.',
+        'error',
+      );
       return;
     }
 
@@ -202,12 +226,20 @@ export function initRsvpForm() {
     try {
       await submitRsvp(payload);
       form.reset();
-      const noChildrenInput = form.querySelector('input[name="withChildren"][value="false"]');
+      const noChildrenInput = form.querySelector(
+        'input[name="withChildren"][value="false"]',
+      );
       if (noChildrenInput) {
         noChildrenInput.checked = true;
       }
+      const noSecondDayInput = form.querySelector(
+        'input[name="secondDay"][value="false"]',
+      );
+      if (noSecondDayInput) {
+        noSecondDayInput.checked = true;
+      }
       toggleAttendanceDependentFields();
-      setStatus('Спасибо! Мы получили ваш ответ и скоро свяжемся.', 'success');
+      setStatus('Спасибо!', 'success');
     } catch (error) {
       setStatus(
         error.message ?? 'Произошла ошибка. Попробуйте отправить ещё раз.',

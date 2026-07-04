@@ -12,6 +12,7 @@ export interface ConfirmAttendanceInput {
   attending: boolean;
   guestsCount?: number;
   plusOne?: boolean;
+  secondDay?: boolean;
   partnerName?: string;
   withChildren?: boolean;
   childrenDetails?: string;
@@ -35,6 +36,7 @@ export class RsvpService {
       attending: input.attending,
       guestsCount: input.guestsCount ?? null,
       plusOne: input.plusOne ?? null,
+      secondDay: input.secondDay ?? null,
       partnerName: input.partnerName ?? null,
       withChildren: input.withChildren ?? null,
       childrenDetails: input.childrenDetails ?? null,

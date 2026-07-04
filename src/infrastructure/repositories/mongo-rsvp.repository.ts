@@ -11,6 +11,7 @@ interface RsvpDocument {
   attending: boolean;
   guestsCount?: number | null;
   plusOne?: boolean | null;
+  secondDay?: boolean | null;
   partnerName?: string | null;
   withChildren?: boolean | null;
   childrenDetails?: string | null;
@@ -36,6 +37,7 @@ export class MongoRsvpRepository implements RsvpRepository {
       attending: entry.attending,
       guestsCount: entry.guestsCount,
       plusOne: entry.plusOne,
+      secondDay: entry.secondDay,
       partnerName: entry.partnerName,
       withChildren: entry.withChildren,
       childrenDetails: entry.childrenDetails,
@@ -61,6 +63,7 @@ export class MongoRsvpRepository implements RsvpRepository {
         attending: doc.attending,
         guestsCount: doc.guestsCount ?? null,
         plusOne: doc.plusOne ?? null,
+        secondDay: doc.secondDay ?? null,
         partnerName: doc.partnerName ?? null,
         withChildren: doc.withChildren ?? null,
         childrenDetails: doc.childrenDetails ?? null,
