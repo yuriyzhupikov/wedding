@@ -67,7 +67,7 @@ h6 {
   max-width: 980px;
   margin: 8px auto 40px;
   font-family: var(--font-script);
-  font-size: 42px;
+  font-size: 46px;
   font-weight: 400;
   line-height: 1.25;
   letter-spacing: 0;
@@ -77,14 +77,14 @@ h6 {
   #fh5co-header .display-tc h2 {
     max-width: 620px;
     margin: 8px auto 30px;
-    font-size: 31px;
+    font-size: 34px;
     line-height: 1.25;
   }
 }
 
 @media screen and (max-width: 480px) {
   #fh5co-header .display-tc h2 {
-    font-size: 24px;
+    font-size: 30px;
   }
 }
 
@@ -477,7 +477,17 @@ a:focus,
   background: rgba(0, 0, 0, 0.25);
 }
 
+#fh5co-header {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 @media screen and (max-width: 767px) {
+  #fh5co-header {
+    background-position: 82% center !important;
+  }
+
   #fh5co-location {
     padding: 3.5em 0 2.5em;
     scroll-margin-top: 70px;
@@ -609,7 +619,7 @@ body.offcanvas #page:after {
   }
 
   #fh5co-header .display-tc h2 {
-    font-size: 30px !important;
+    font-size: 34px !important;
     line-height: 1.25 !important;
     margin: 10px auto 34px !important;
     max-width: 340px;
