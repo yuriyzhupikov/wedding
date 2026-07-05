@@ -1,0 +1,8 @@
+{
+	email webdev_56@mail.ru
+}
+
+masha-yura.ru {
+	encode zstd gzip
+	reverse_proxy wedding-app:3000
+}

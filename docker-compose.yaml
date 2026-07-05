@@ -15,8 +15,23 @@ services:
       - mongodb
     env_file:
       - .env
+    expose:
+      - '3000'
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    depends_on:
+      - wedding-app
     ports:
-      - '80:3000'
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
 
 volumes:
   mongo-data:
+  caddy-data:
+  caddy-config:
