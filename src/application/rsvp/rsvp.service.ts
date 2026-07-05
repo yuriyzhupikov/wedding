@@ -10,6 +10,7 @@ import {
   RSVP_REPOSITORY,
 } from '../../domain/repositories/rsvp.repository';
 import { EmailNotifierService } from '../../infrastructure/notifications/email-notifier.service';
+import { buildRsvpXlsx } from './rsvp-xlsx-exporter';
 
 export interface ConfirmAttendanceInput {
   fullName: string;
@@ -78,5 +79,10 @@ export class RsvpService {
 
   async list(): Promise<RsvpEntry[]> {
     return this.repository.findAll();
+  }
+
+  async exportXlsx(): Promise<Buffer> {
+    const entries = await this.repository.findAll();
+    return buildRsvpXlsx(entries);
   }
 }
